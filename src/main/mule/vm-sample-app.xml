@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="vm-sample-appFlow" doc:id="c12ea45e-24f1-481a-a26c-83befa6ad113" >
 		<http:listener doc:name="Listener" doc:id="b2030ee7-9aaa-41a7-9182-4754b962a74f" config-ref="HTTP_Listener_config" path="vmsample"/>
-		<set-payload value="11" doc:name="Set Payload" doc:id="6ca8d637-b521-4e90-a76a-97a54f4ba1e8" />
+		<set-payload value="10" doc:name="Set Payload" doc:id="6ca8d637-b521-4e90-a76a-97a54f4ba1e8" />
 		<vm:publish queueName="queue.a" doc:name="Publish" doc:id="0c1c3f44-5162-4c4d-b7f0-1130f0103956" config-ref="VM_Config" sendCorrelationId="ALWAYS" correlationId="#[correlationId]"/>
 		<!-- [STUDIO:"Publish consume"]<vm:publish-consume doc:name="Publish consume" doc:id="3ba90a12-2a17-4127-9919-ab6bda719f55" config-ref="VM_Config" sendCorrelationId="ALWAYS" correlationId="#[correlationId&#93;" queueName="queue.a"/> [STUDIO] -->
 		<logger level="INFO" doc:name="Logger" doc:id="4f4b8d97-b74e-4f3e-8b50-74cc2f3d0c6b" message="#[payload]"/>
@@ -25,5 +25,14 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener doc:name="Listener" doc:id="2cf81a8c-5561-4871-b4fb-21e19f9f794a" config-ref="HTTP_Listener_config" path="test"/>
 		<vm:consume queueName="queue.a" doc:name="Consume" doc:id="238c1197-a3dc-41af-966d-e50eb14a5bfd" config-ref="VM_Config"/>
 		<logger level="INFO" doc:name="Logger" doc:id="51b49835-a51a-4c32-bcf1-40ba86b9ddf4" message="#[payload]"/>
+	</flow>
+	<flow name="vm-sample-appFlow2" doc:id="1ffd7b19-37b6-4e0a-9fd1-fe84809f767f" >
+		<http:listener doc:name="Listener" doc:id="282a17e3-1b41-48bc-b7c0-a19a4493a52c" config-ref="HTTP_Listener_config" path="parallelForeach"/>
+		<set-variable value='"true"' doc:name="Set Variable" doc:id="0f6173fa-3c41-484d-bd43-77f9fe3d627c" variableName="flag"/>
+		<parallel-foreach doc:name="Parallel For Each" doc:id="b7052035-4c6d-43fa-b184-89f4095085ff" collection="#[[1,2,3,4,5,6,7,8,9,10]]">
+			<logger level="INFO" doc:name="Logger" doc:id="0507bdd0-9f7c-4a5c-b76e-f40c25bc6ebb" message="#[payload]"/>
+			<set-variable value='"false"' doc:name="Set Variable" doc:id="ad09817b-d45b-479e-8fbd-30fb7e6c8a3b" variableName="flag"/>
+		</parallel-foreach>
+		<logger level="INFO" doc:name="Logger" doc:id="02c128e6-d886-4bc0-852e-9cfe223b0dbb" message="#[payload]"/>
 	</flow>
 </mule>
