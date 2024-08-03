@@ -6,7 +6,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>vm-sample-app</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>vm-sample-app</name>
@@ -29,22 +29,23 @@
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
+				<version>4.1.0</version>
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<server>my.anypoint.credentials</server>
 						<muleVersion>4.7.1</muleVersion>
-						<applicationName>vm-sample-app</applicationName>
-						<environment>${environment}</environment>
+						<username>jashmul</username>
+						<password>Satya@123</password>
+						<applicationName>vm-sample-app1</applicationName>
+						<environment>Sandbox</environment>
 						<region>us-east-2</region>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
+						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -55,11 +56,7 @@
 			<version>1.9.1</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-install-plugin</artifactId>
-			<version>3.1.1</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
@@ -72,6 +69,7 @@
 			<version>2.0.1</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
+		
 	</dependencies>
 
 	<repositories>
@@ -89,16 +87,17 @@
 		</repository>
 	</repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases Repository</name>
-			<layout>default</layout>
-			<url>https://repository.mulesoft.org/releases/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+	
+<pluginRepositories>
+    <pluginRepository>
+      <id>mulesoft-releases</id>
+      <name>mulesoft release repository</name>
+      <layout>default</layout>
+      <url>https://repository.mulesoft.org/releases/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
