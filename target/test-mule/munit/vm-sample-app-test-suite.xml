@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="vm-sample-app-test-suite.xml" />
+	<munit:test name="vm-sample-app-test-suite-vm-sample-appFlowTest" doc:id="db5f9450-1162-4908-8c6e-0b6575703abb" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to vm-sample-appFlow" doc:id="397f893b-9e4a-4b36-9e89-9c6759c75a2c" name="vm-sample-appFlow"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
